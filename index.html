@@ -7,6 +7,395 @@
         <link rel="stylesheet" href="./styles.css">
     </head>
     <body>
+        <nav id="navbar">
+            <header>Rust Documentation</header>
+            <ul>
+                <li><a class="nav-link" href="#Variables_and_Data_Types">Variables and Data Types</a></li>
+                <li><a class="nav-link" href="#Control_Flow">Control Flow</a></li>
+                <li><a class="nav-link" href="#Functions">Functions</a></li>
+                <li><a class="nav-link" href="#Structs_and_Enums">Structs and Enums</a></li>
+                <li><a class="nav-link" href="#Traits_and_Generics">Traits and Generics</a></li>
+                <li><a class="nav-link" href="#Pattern_Matching">Pattern Matching</a></li>
+                <li><a class="nav-link" href="#Error_Handling">Error Handling</a></li>
+                <li><a class="nav-link" href="#Ownership_and_Borrowing">Ownership and Borrowing</a></li>
+                <li><a class="nav-link" href="#Modules_and_Packages">Modules and Packages</a></li>
+                <li><a class="nav-link" href="#Concurrency_and_Multithreading">Concurrency and Multithreading</a></li>
+                <li><a class="nav-link" href="#Unsafe_Rust">Unsafe Rust</a></li>
+                <li><a class="nav-link" href="#Macros">Macros</a></li>
+                <li><a class="nav-link" href="#Standard_Library">Standard Library</a></li>
+                <li><a class="nav-link" href="#Cargo">Cargo</a></li>
+                <li><a class="nav-link" href="#Lifetimes_and_Borrow_Checker">Lifetimes and Borrow Checker</a></li>
+                <li><a class="nav-link" href="#More_Info">More Info</a></li>
+            </ul>
+        </nav>
+        <main id="main-doc">
+            <section class="main-section" id="Variables_and_Data_Types">
+                <header>Variables and Data Types</header>
+                <article>
+                    <p>
+                        Rust supports various data types such as integers, floating-point numbers, booleans, characters, strings, tuples, arrays, and more. Variables in Rust are immutable by default, but you can use the mut keyword to make them mutable.
+                    </p>
+                    <code>
+                        let age: u32 = 25;
+                        let mut count = 0;
+                        let message: String = String::from("Hello, Rust!");
+                        let pi: f64 = 3.14;
+                    </code>
+                </article>
+            </section>
+            <section class="main-section" id="Control_Flow">
+                <header>Control Flow</header>
+                <article>
+                    <p>
+                        Rust provides control flow statements like if, else if, else, for, while, and match for handling conditions and loops.
+                    </p>
+                    <code>
+                        let number = 7;
+                        if number < 5 {
+                            println!("Less than 5");
+                        } else if number == 5 {
+                            println!("Equal to 5");
+                        } else {
+                            println!("Greater than 5");
+                        }
 
+                        let mut counter = 0;
+                        while counter < 5 {
+                            println!("Counter: {}", counter);
+                            counter += 1;
+                        }
+
+                        for number in 1..=5 {
+                            println!("Number: {}", number);
+                        }
+
+                        let value = 3;
+                        match value {
+                            1 => println!("One"),
+                            2 => println!("Two"),
+                            _ => println!("Other"),
+                        }
+                    </code>
+                </article>
+            </section>
+            <section class="main-section" id="Functions">
+                <header>Functions</header>
+                <article>
+                    <P>
+                        Functions in Rust are declared using the fn keyword. You can specify parameters and return types for functions.
+                    </P>
+                    <code>
+                        fn add(a: i32, b: i32) -> i32 {
+                            a + b
+                        }
+                        
+                        fn greet(name: &str) {
+                            println!("Hello, {}!", name);
+                        }
+                        
+                        let result = add(3, 4);
+                        greet("Alice");                        
+                    </code>
+                </article>
+            </section>
+            <section class="main-section" id="Structs_and_Enums">
+                <header>Structs and Enums</header>
+                <article>
+                    <p>
+                        Structs allow you to define custom data structures with named fields. Enums define a type with multiple possible variants.
+                    </p>
+                    <code>
+                        struct Person {
+                            name: String,
+                            age: u32,
+                        }
+                        
+                        enum Direction {
+                            Up,
+                            Down,
+                            Left,
+                            Right,
+                        }
+                        
+                        let person = Person {
+                            name: String::from("Alice"),
+                            age: 30,
+                        };
+                        
+                        let direction = Direction::Left;                        
+                    </code>
+                </article>
+            </section>
+            <section class="main-section" id="Traits_and_Generics">
+                <header>Traits and Generics</header>
+                <article>
+                    <p>
+                        Traits define behavior that types can implement. Generics allow you to write flexible and reusable code that can work with different types.
+                    </p>
+                    <code>
+                        trait Printable {
+                            fn print(&self);
+                        }
+                        
+                        struct Point<T> {
+                            x: T,
+                            y: T,
+                        }
+                        
+                        impl<T: Printable> Point<T> {
+                            fn print_coordinates(&self) {
+                                self.x.print();
+                                self.y.print();
+                            }
+                        }
+                        
+                        impl Printable for i32 {
+                            fn print(&self) {
+                                println!("Value: {}", *self);
+                            }
+                        }
+                        
+                        let point = Point { x: 3, y: 4 };
+                        point.print_coordinates();                        
+                    </code>
+                </article>
+            </section>
+            <section class="main-section" id="Pattern_Matching">
+                <header>Pattern Matching</header>
+                <article>
+                    <p>
+                        Pattern matching allows you to destructure values and match them against patterns to execute corresponding code.
+                    </p>
+                    <code>
+                        enum Color {
+                            Red,
+                            Green,
+                            Blue,
+                        }
+                        
+                        let color = Color::Green;
+                        match color {
+                            Color::Red => println!("Red color"),
+                            Color::Green => println!("Green color"),
+                            Color::Blue => println!("Blue color"),
+                        }                        
+                    </code>
+                </article>
+            </section>
+            <section class="main-section" id="Error_Handling">
+                <header>Error Handling</header>
+                <article>
+                    <p>
+                        Rust uses the Result and Option types for error handling and optional values, respectively.
+                        Result represents either a success (Ok) value or an error (Err) value.
+                        Option represents either a Some value or None.
+                    </p>
+                    <code>
+                        fn divide(a: f64, b: f64) -> Result<f64, String> {
+                            if b != 0.0 {
+                                Ok(a / b)
+                            } else {
+                                Err(String::from("Division by zero"))
+                            }
+                        }
+                        
+                        let result = divide(10.0, 5.0);
+                        match result {
+                            Ok(value) => println!("Result: {}", value),
+                            Err(error) => println!("Error: {}", error),
+                        }
+                        
+                        let optional_value: Option<i32> = Some(42);
+                        match optional_value {
+                            Some(value) => println!("Value: {}", value),
+                            None => println!("No value"),
+                        }                        
+                    </code>
+                </article>
+            </section>
+            <section class="main-section" id="Ownership_and_Borrowing">
+                <header>Ownership and Borrowing</header>
+                <article>
+                    <p>
+                        Rust's ownership system ensures memory safety and prevents data races. Each value in Rust has a unique owner, and there are rules governing how ownership is transferred or borrowed.
+                    </p>
+                    <code>
+                        let s = String::from("Hello");
+                        let length = s.len();
+                        let reference = &s;
+                    </code>
+                </article>
+            </section>
+            <section class="main-section" id="Modules_and_Packages">
+                <header>Modules and Packages</header>
+                <article>
+                    <p>
+                        Rust allows organizing code into modules and packages.
+Modules are defined using the mod keyword, and visibility can be controlled using the pub keyword.
+                    </p>
+                    <code>
+                        mod my_module {
+                            pub fn greet() {
+                                println!("Hello from my_module!");
+                            }
+                        }
+                        
+                        use my_module::greet;
+                        
+                        fn main() {
+                            greet();
+                        }                        
+                    </code>
+                </article>
+            </section>
+            <section class="main-section" id="Concurrency_and_Multithreading">
+                <header>Concurrency and Multithreading</header>
+                <article>
+                    <p>
+                        Rust provides concurrency and multithreading capabilities through threads and synchronization primitives.
+                        The std::thread module is used to create and manage threads.
+                        Synchronization primitives like Mutex and Arc are used for thread safety.
+                    </p>
+                    <code>
+                        use std::thread;
+                        use std::sync::{Arc, Mutex};
+
+                        fn main() {
+                            let counter = Arc::new(Mutex::new(0));
+                            let mut handles = vec![];
+
+                            for _ in 0..10 {
+                                let counter = Arc::clone(&counter);
+                                let handle = thread::spawn(move || {
+                                    let mut num = counter.lock().unwrap();
+                                    *num += 1;
+                                });
+                                handles.push(handle);
+                            }
+
+                            for handle in handles {
+                                handle.join().unwrap();
+                            }
+
+                            println!("Counter: {}", *counter.lock().unwrap());
+                        }
+                    </code>
+                </article>
+            </section>
+            <section class="main-section" id="Unsafe_Rust">
+                <header>Unsafe Rust</header>
+                <article>
+                    <p>
+                        Unsafe Rust allows bypassing certain safety checks for low-level operations.
+                        Unsafe blocks are used to wrap unsafe code and ensure that unsafe operations are contained.
+                        Raw pointers (*const T and *mut T) are used for direct memory access.
+                    </p>
+                    <code>
+                        unsafe {
+                            let raw_ptr: *const u32 = &value;
+                            let value = *raw_ptr;
+                        }                        
+                    </code>
+                </article>
+            </section>
+            <section class="main-section" id="Macros">
+                <header>Macros</header>
+                <article>
+                    <p>
+                        Macros in Rust allow compile-time metaprogramming and code generation.
+                        Declarative macros are created using macro_rules! and pattern matching.
+                        Procedural macros are custom macros defined using procedural macros traits.
+                    </p>
+                    <code>
+                        macro_rules! hello {
+                            () => {
+                                println!("Hello!");
+                            };
+                            ($name:expr) => {
+                                println!("Hello, {}!", $name);
+                            };
+                        }
+                        
+                        hello!();           // Hello!
+                        hello!("Alice");    // Hello, Alice!                        
+                    </code>
+                </article>
+            </section>
+            <section class="main-section" id="Standard_Library">
+                <header>Standard Library</header>
+                <article>
+                    <ul>
+                        <li>The Rust standard library provides various modules and types for common functionality.</li>
+                        <li>The collections module provides data structures like Vec, HashMap, etc.</li>
+                        <li>The std::io module handles input and output operations.</li>
+                        <li>Networking functionality is available through modules like std::net.</li>
+                    </ul>
+                    <code>
+                        use std::collections::HashMap;
+                        use std::io::{self, Read};
+                        use std::net::TcpStream;
+
+                        let mut numbers = Vec::new();
+                        numbers.push(1);
+                        numbers.push(2);
+
+                        let mut buffer = String::new();
+                        io::stdin().read_to_string(&mut buffer).unwrap();
+
+                        let stream = TcpStream::connect("127.0.0.1:8080").unwrap();
+                    </code>
+                </article>
+            </section>
+            <section class="main-section" id="Cargo">
+                <header>Cargo</header>
+                <article>
+                    <p>
+                        Cargo is the package manager and build system for Rust.
+                        It simplifies managing dependencies, building projects, and running tests.
+                        The Cargo.toml file defines project configuration and dependencies.
+                    </p>
+                    <code>
+                        [package]
+                        name = "my_project"
+                        version = "0.1.0"
+                        edition = "2021"
+
+                        [dependencies]
+                        rand = "0.8.4"
+                    </code>
+                </article>
+            </section>
+            <section class="main-section" id="Lifetimes_and_Borrow_Checker">
+                <header>Lifetimes and Borrow Checker</header>
+                <article>
+                    <ul>
+                        <li>Lifetimes in Rust ensure that references remain valid as long as they are used.</li>
+                        <li>The borrow checker enforces ownership and borrowing rules to prevent memory errors.</li>
+                        <li>Lifetime annotations are used to specify the relationship between references.</li>
+                    </ul>
+                    <code>
+                        fn longest<'a>(a: &'a str, b: &'a str) -> &'a str {
+                            if a.len() > b.len() {
+                                a
+                            } else {
+                                b
+                            }
+                        }
+                        
+                        let string1 = String::from("hello");
+                        let result;
+                        {
+                            let string2 = String::from("world");
+                            result = longest(string1.as_str(), string2.as_str());
+                        }
+                        println!("Longest: {}", result);                        
+                    </code>
+                </article>
+            </section>
+            <section class="main-section" id="More_Info">
+                <header>More Info</header>
+                <p>For more information go to <a href="https://www.rust-lang.org/" target="_blank">rust-lang.org</a></p>
+            </section>
+        </main>
     </body>
 </html>
