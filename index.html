@@ -36,8 +36,7 @@
                     <p>
                         Rust supports various data types such as integers, floating-point numbers, booleans, characters, strings, tuples, arrays, and more. Variables in Rust are immutable by default, but you can use the mut keyword to make them mutable.
                     </p>
-                    <code>
-                        let age: u32 = 25;
+                    <code>let age: u32 = 25;
                         let mut count = 0;
                         let message: String = String::from("Hello, Rust!");
                         let pi: f64 = 3.14;
@@ -50,8 +49,7 @@
                     <p>
                         Rust provides control flow statements like if, else if, else, for, while, and match for handling conditions and loops.
                     </p>
-                    <code>
-                        let number = 7;
+                    <code>let number = 7;
                         if number < 5 {
                             println!("Less than 5");
                         } else if number == 5 {
@@ -85,17 +83,16 @@
                     <P>
                         Functions in Rust are declared using the fn keyword. You can specify parameters and return types for functions.
                     </P>
-                    <code>
-                        fn add(a: i32, b: i32) -> i32 {
-                            a + b
-                        }
-                        
-                        fn greet(name: &str) {
-                            println!("Hello, {}!", name);
-                        }
-                        
-                        let result = add(3, 4);
-                        greet("Alice");                        
+                    <code>fn add(a: i32, b: i32) -> i32 {
+                        a + b
+                    }
+                    
+                    fn greet(name: &str) {
+                        println!("Hello, {}!", name);
+                    }
+                    
+                    let result = add(3, 4);
+                    greet("Alice");                       
                     </code>
                 </article>
             </section>
@@ -105,25 +102,24 @@
                     <p>
                         Structs allow you to define custom data structures with named fields. Enums define a type with multiple possible variants.
                     </p>
-                    <code>
-                        struct Person {
-                            name: String,
-                            age: u32,
-                        }
-                        
-                        enum Direction {
-                            Up,
-                            Down,
-                            Left,
-                            Right,
-                        }
-                        
-                        let person = Person {
-                            name: String::from("Alice"),
-                            age: 30,
-                        };
-                        
-                        let direction = Direction::Left;                        
+                    <code>struct Person {
+                        name: String,
+                        age: u32,
+                    }
+                    
+                    enum Direction {
+                        Up,
+                        Down,
+                        Left,
+                        Right,
+                    }
+                    
+                    let person = Person {
+                        name: String::from("Alice"),
+                        age: 30,
+                    };
+                    
+                    let direction = Direction::Left;  
                     </code>
                 </article>
             </section>
@@ -133,31 +129,30 @@
                     <p>
                         Traits define behavior that types can implement. Generics allow you to write flexible and reusable code that can work with different types.
                     </p>
-                    <code>
-                        trait Printable {
-                            fn print(&self);
+                    <code>trait Printable {
+                        fn print(&self);
+                    }
+                    
+                    struct Point<T> {
+                        x: T,
+                        y: T,
+                    }
+                    
+                    impl<T: Printable> Point<T> {
+                        fn print_coordinates(&self) {
+                            self.x.print();
+                            self.y.print();
                         }
-                        
-                        struct Point<T> {
-                            x: T,
-                            y: T,
+                    }
+                    
+                    impl Printable for i32 {
+                        fn print(&self) {
+                            println!("Value: {}", *self);
                         }
-                        
-                        impl<T: Printable> Point<T> {
-                            fn print_coordinates(&self) {
-                                self.x.print();
-                                self.y.print();
-                            }
-                        }
-                        
-                        impl Printable for i32 {
-                            fn print(&self) {
-                                println!("Value: {}", *self);
-                            }
-                        }
-                        
-                        let point = Point { x: 3, y: 4 };
-                        point.print_coordinates();                        
+                    }
+                    
+                    let point = Point { x: 3, y: 4 };
+                    point.print_coordinates();                     
                     </code>
                 </article>
             </section>
@@ -167,19 +162,18 @@
                     <p>
                         Pattern matching allows you to destructure values and match them against patterns to execute corresponding code.
                     </p>
-                    <code>
-                        enum Color {
-                            Red,
-                            Green,
-                            Blue,
-                        }
-                        
-                        let color = Color::Green;
-                        match color {
-                            Color::Red => println!("Red color"),
-                            Color::Green => println!("Green color"),
-                            Color::Blue => println!("Blue color"),
-                        }                        
+                    <code>enum Color {
+                        Red,
+                        Green,
+                        Blue,
+                    }
+                    
+                    let color = Color::Green;
+                    match color {
+                        Color::Red => println!("Red color"),
+                        Color::Green => println!("Green color"),
+                        Color::Blue => println!("Blue color"),
+                    }                      
                     </code>
                 </article>
             </section>
@@ -191,26 +185,25 @@
                         Result represents either a success (Ok) value or an error (Err) value.
                         Option represents either a Some value or None.
                     </p>
-                    <code>
-                        fn divide(a: f64, b: f64) -> Result<f64, String> {
-                            if b != 0.0 {
-                                Ok(a / b)
-                            } else {
-                                Err(String::from("Division by zero"))
-                            }
+                    <code>fn divide(a: f64, b: f64) -> Result<f64, String> {
+                        if b != 0.0 {
+                            Ok(a / b)
+                        } else {
+                            Err(String::from("Division by zero"))
                         }
-                        
-                        let result = divide(10.0, 5.0);
-                        match result {
-                            Ok(value) => println!("Result: {}", value),
-                            Err(error) => println!("Error: {}", error),
-                        }
-                        
-                        let optional_value: Option<i32> = Some(42);
-                        match optional_value {
-                            Some(value) => println!("Value: {}", value),
-                            None => println!("No value"),
-                        }                        
+                    }
+                    
+                    let result = divide(10.0, 5.0);
+                    match result {
+                        Ok(value) => println!("Result: {}", value),
+                        Err(error) => println!("Error: {}", error),
+                    }
+                    
+                    let optional_value: Option<i32> = Some(42);
+                    match optional_value {
+                        Some(value) => println!("Value: {}", value),
+                        None => println!("No value"),
+                    }                        
                     </code>
                 </article>
             </section>
@@ -220,8 +213,7 @@
                     <p>
                         Rust's ownership system ensures memory safety and prevents data races. Each value in Rust has a unique owner, and there are rules governing how ownership is transferred or borrowed.
                     </p>
-                    <code>
-                        let s = String::from("Hello");
+                    <code>let s = String::from("Hello");
                         let length = s.len();
                         let reference = &s;
                     </code>
@@ -234,18 +226,17 @@
                         Rust allows organizing code into modules and packages.
 Modules are defined using the mod keyword, and visibility can be controlled using the pub keyword.
                     </p>
-                    <code>
-                        mod my_module {
-                            pub fn greet() {
-                                println!("Hello from my_module!");
-                            }
+                    <code>mod my_module {
+                        pub fn greet() {
+                            println!("Hello from my_module!");
                         }
-                        
-                        use my_module::greet;
-                        
-                        fn main() {
-                            greet();
-                        }                        
+                    }
+                    
+                    use my_module::greet;
+                    
+                    fn main() {
+                        greet();
+                    }                     
                     </code>
                 </article>
             </section>
@@ -257,8 +248,7 @@ Modules are defined using the mod keyword, and visibility can be controlled usin
                         The std::thread module is used to create and manage threads.
                         Synchronization primitives like Mutex and Arc are used for thread safety.
                     </p>
-                    <code>
-                        use std::thread;
+                    <code>use std::thread;
                         use std::sync::{Arc, Mutex};
 
                         fn main() {
@@ -291,11 +281,10 @@ Modules are defined using the mod keyword, and visibility can be controlled usin
                         Unsafe blocks are used to wrap unsafe code and ensure that unsafe operations are contained.
                         Raw pointers (*const T and *mut T) are used for direct memory access.
                     </p>
-                    <code>
-                        unsafe {
-                            let raw_ptr: *const u32 = &value;
-                            let value = *raw_ptr;
-                        }                        
+                    <code>unsafe {
+                        let raw_ptr: *const u32 = &value;
+                        let value = *raw_ptr;
+                    }                        
                     </code>
                 </article>
             </section>
@@ -307,18 +296,17 @@ Modules are defined using the mod keyword, and visibility can be controlled usin
                         Declarative macros are created using macro_rules! and pattern matching.
                         Procedural macros are custom macros defined using procedural macros traits.
                     </p>
-                    <code>
-                        macro_rules! hello {
-                            () => {
-                                println!("Hello!");
-                            };
-                            ($name:expr) => {
-                                println!("Hello, {}!", $name);
-                            };
-                        }
-                        
-                        hello!();           // Hello!
-                        hello!("Alice");    // Hello, Alice!                        
+                    <code>macro_rules! hello {
+                        () => {
+                            println!("Hello!");
+                        };
+                        ($name:expr) => {
+                            println!("Hello, {}!", $name);
+                        };
+                    }
+                    
+                    hello!();           // Hello!
+                    hello!("Alice");    // Hello, Alice!                          
                     </code>
                 </article>
             </section>
@@ -331,8 +319,7 @@ Modules are defined using the mod keyword, and visibility can be controlled usin
                         <li>The std::io module handles input and output operations.</li>
                         <li>Networking functionality is available through modules like std::net.</li>
                     </ul>
-                    <code>
-                        use std::collections::HashMap;
+                    <code>use std::collections::HashMap;
                         use std::io::{self, Read};
                         use std::net::TcpStream;
 
@@ -343,7 +330,7 @@ Modules are defined using the mod keyword, and visibility can be controlled usin
                         let mut buffer = String::new();
                         io::stdin().read_to_string(&mut buffer).unwrap();
 
-                        let stream = TcpStream::connect("127.0.0.1:8080").unwrap();
+                        let stream = TcpStream::connect("127.0.0.1:8080").unwrap(); 
                     </code>
                 </article>
             </section>
@@ -355,8 +342,7 @@ Modules are defined using the mod keyword, and visibility can be controlled usin
                         It simplifies managing dependencies, building projects, and running tests.
                         The Cargo.toml file defines project configuration and dependencies.
                     </p>
-                    <code>
-                        [package]
+                    <code>[package]
                         name = "my_project"
                         version = "0.1.0"
                         edition = "2021"
@@ -374,22 +360,21 @@ Modules are defined using the mod keyword, and visibility can be controlled usin
                         <li>The borrow checker enforces ownership and borrowing rules to prevent memory errors.</li>
                         <li>Lifetime annotations are used to specify the relationship between references.</li>
                     </ul>
-                    <code>
-                        fn longest<'a>(a: &'a str, b: &'a str) -> &'a str {
-                            if a.len() > b.len() {
-                                a
-                            } else {
-                                b
-                            }
+                    <code>fn longest<'a>(a: &'a str, b: &'a str) -> &'a str {
+                        if a.len() > b.len() {
+                            a
+                        } else {
+                            b
                         }
-                        
-                        let string1 = String::from("hello");
-                        let result;
-                        {
-                            let string2 = String::from("world");
-                            result = longest(string1.as_str(), string2.as_str());
-                        }
-                        println!("Longest: {}", result);                        
+                    }
+                    
+                    let string1 = String::from("hello");
+                    let result;
+                    {
+                        let string2 = String::from("world");
+                        result = longest(string1.as_str(), string2.as_str());
+                    }
+                    println!("Longest: {}", result);                     
                     </code>
                 </article>
             </section>
